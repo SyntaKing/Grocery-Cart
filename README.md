@@ -5,7 +5,7 @@ Feel free to suggest features that I can add to this project.
 
 ## Features
 
-- [] Add Item
+- [x] Add Item
 - [] Remove Item
 - [] Checkout
 - [] Admin Panel
