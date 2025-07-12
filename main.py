@@ -23,8 +23,12 @@ def viewCart():
 
 def addToCart (list_name, item: int, item_quantity: int): 
     if list_name == 'fruits':
-        cart_items.append(fruits[int(item)-1])
-        quantity.append(item_quantity)
+        if fruits[int(item)-1] in cart_items:
+            index = cart_items.index(fruits[int(item)-1])
+            quantity[index] = str(int(quantity[index]) + int(item_quantity))
+        else:
+            cart_items.append(fruits[int(item)-1])
+            quantity.append(item_quantity)
 
 # Logic execution
 while True:
