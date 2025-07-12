@@ -1,10 +1,10 @@
 import os
 
 #Variable Delaration
-price_list = {"Apple [1 pc]" : 69, "Banana [1 pc]" : 8.75, "Mango [1 pc]" : 27, "Potato" : 23, "Cucumber" : 44}
+price_list = {"Apple [1 PC]" : 69, "Banana [1 PC]" : 8.75, "Mango [1 PC]" : 27, "Blueberry [125 G]" : 125, "Avocado [1 PC]" : 69, "Potato [1 KG]" : 23, "Cucumber [500 G]" : 44, "Carrot [250 G]" : 9, "Onion [1 KG]" : 32}
 
-fruits = ["Apple [1 pc]", "Banana [1 pc]", "Mango [1 pc]"]
-vegetables = ["Potato [1 KG]", "Cucumber [500 GM]"]
+fruits = ["Apple [1 PC]", "Banana [1 PC]", "Mango [1 PC]", "Blueberry [125 G]", "Avocado [1 PC]"]
+vegetables = ["Potato [1 KG]", "Cucumber [500 G]", "Carrot [250 G]", "Onion [1 KG]"]
 
 cart_items = []
 quantity = []
@@ -29,6 +29,13 @@ def addToCart (list_name, item: int, item_quantity: int):
         else:
             cart_items.append(fruits[int(item)-1])
             quantity.append(item_quantity)
+    elif list_name == 'vegetables':
+        if vegetables[int(item)-1] in cart_items:
+            index = cart_items.index(vegetables[int(item)-1])
+            quantity[index] = str(int(quantity[index]) + int(item_quantity))
+        else:
+            cart_items.append(vegetables[int(item)-1])
+            quantity.append(item_quantity)        
 
 # Logic execution
 while True:
@@ -107,6 +114,53 @@ while True:
                     print("\n             ADD ITEM\n")
                     serial = 1
                     for i in fruits:
+                        print(f"{serial}. {i}")
+                        serial += 1
+                    serial -= 1
+                    print("\n\n-  Previous menu")
+                    print("\nINVALID INPUT")
+                    print("__________________________________")
+                    choice_submenu_2 = input()
+
+                if choice_submenu_2 == '-':
+                    break
+
+                else:
+                    os.system('cls')
+                    print("-----------Grocery Cart-----------")
+                    print("\n             ADD ITEM\n")
+                    print("\nEnter quantity")
+                    print("__________________________________")
+                    item_quantity = input()
+                    while item_quantity.isdigit() != True:
+                        os.system('cls')
+                        print("-----------Grocery Cart-----------")
+                        print("\n             ADD ITEM\n")
+                        print("\nEnter quantity")
+                        print("\nINVALID INPUT")
+                        print("__________________________________")
+                        item_quantity = input()
+                    addToCart(list_name, choice_submenu_2, item_quantity)
+
+            while choice_submenu_1 == '2':
+                os.system('cls')
+                list_name = 'vegetables'
+                print("-----------Grocery Cart-----------")
+                print("\n             ADD ITEM\n")
+                serial = 1
+                for i in vegetables:
+                    print(f"{serial}. {i}")
+                    serial += 1
+                serial -= 1
+                print("\n\n-  Previous menu")
+                print("__________________________________")
+                choice_submenu_2 = input()
+                while ((choice_submenu_2.isalpha == True) or (choice_submenu_2 < '1' or choice_submenu_2 > str(serial)) or len(choice_submenu_2) != len(str(serial))) and (choice_submenu_2 != '-'):
+                    os.system('cls')
+                    print("-----------Grocery Cart-----------")
+                    print("\n             ADD ITEM\n")
+                    serial = 1
+                    for i in vegetables:
                         print(f"{serial}. {i}")
                         serial += 1
                     serial -= 1
